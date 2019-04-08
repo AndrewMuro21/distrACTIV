@@ -37,6 +37,7 @@ exports.log = function(req, res) {
 exports.sig = function(req, res) {
 	var name = req.params.name;
 	var email = req.params.email;
+	var password = req.params.password;
 	data.active_user = name;
 	let write = JSON.stringify(data, null, 2);
 	fs.writeFileSync('./public/data.json', write);
@@ -70,6 +71,7 @@ exports.sig = function(req, res) {
 
 	template.name = name;
 	template.mail = email;
+	template.pass = password;
 
 	act.users.push(template);
 	let newAct = JSON.stringify(act, null, 2);

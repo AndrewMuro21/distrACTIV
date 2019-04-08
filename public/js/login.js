@@ -79,6 +79,7 @@ $("#sig").click(function(e){
 function existingUser(result){
 	var name = $("#sig-name").val();
 	var email = $("#inputEmail").val();
+	var pass= $("#passWord").val();
 	var exists = null; 
 	
 	for(var i = 0; i<result['users'].length; i++){
@@ -89,7 +90,7 @@ function existingUser(result){
 		}
 	}		
 	if(exists != true){
-		$.get("/signup/" + name + "/" + email, redirect);
+		$.get("/signup/" + name + "/" + email + "/" + pass, redirect);
 		//console.log("no user found");
 	}	
 }

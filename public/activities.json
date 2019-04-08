@@ -1,241 +1,31 @@
 {
   "users": [
     {
-      "name": "Kush",
-      "pass": "Quahog",
-      "mail": "igneel.kush73@gmail.com",
+      "name": "Andrew",
+      "pass": "WizRap",
+      "mail": "muro_andrew@yahoo.com",
       "activities": [
         {
-          "name": "Math",
+          "name": "Code",
           "instances": [
             {
-              "duration": "0:0:11",
+              "duration": "0:0:7",
               "distractions": [
                 {
+                  "type": "Reddit",
+                  "count": "1"
+                },
+                {
                   "type": "Facebook",
-                  "count": "3"
+                  "count": "1"
+                },
+                {
+                  "type": "Apex Legends",
+                  "count": "1"
                 }
               ],
-              "mostCommon": "Facebook",
+              "mostCommon": "",
               "total": "3"
-            },
-            {
-              "duration": "0:0:20",
-              "distractions": [
-                {
-                  "type": "Instagram",
-                  "count": 2
-                },
-                {
-                  "type": "Twitter",
-                  "count": "1"
-                },
-                {
-                  "type": "Facebook",
-                  "count": "1"
-                }
-              ],
-              "mostCommon": "",
-              "total": "4"
-            },
-            {
-              "duration": "0:0:31",
-              "distractions": [],
-              "mostCommon": "",
-              "total": "0"
-            },
-            {
-              "duration": "0:0:33",
-              "distractions": [],
-              "mostCommon": "",
-              "total": "0"
-            }
-          ]
-        },
-        {
-          "name": "Science",
-          "instances": [
-            {
-              "duration": "0:5:6",
-              "distractions": [
-                {
-                  "type": "Youtube",
-                  "count": "4"
-                }
-              ],
-              "mostCommon": "Youtube",
-              "total": "4"
-            },
-            {
-              "duration": "0:0:2",
-              "distractions": [
-                {
-                  "type": "Twitter",
-                  "count": "1"
-                }
-              ],
-              "mostCommon": "Twiter",
-              "total": "1"
-            },
-            {
-              "duration": "0:1:7",
-              "distractions": [
-                {
-                  "type": "Twitter",
-                  "count": "1"
-                }
-              ],
-              "mostCommon": "Twitter",
-              "total": "1"
-            },
-            {
-              "duration": "1:0:51",
-              "distractions": [
-                {
-                  "type": "Twitter",
-                  "count": "1"
-                },
-                {
-                  "type": "Reddit",
-                  "count": "1"
-                }
-              ],
-              "mostCommon": "",
-              "total": "2"
-            },
-            {
-              "duration": "1:59:54",
-              "distractions": [],
-              "mostCommon": "",
-              "total": "0"
-            },
-            {
-              "duration": "0:11:7",
-              "distractions": [],
-              "mostCommon": "",
-              "total": "0"
-            },
-            {
-              "duration": "0:1:8",
-              "distractions": [
-                {
-                  "type": "Twitter",
-                  "count": 2
-                }
-              ],
-              "mostCommon": "",
-              "total": "2"
-            },
-            {
-              "duration": "0:0:11",
-              "distractions": [
-                {
-                  "type": "Instagram",
-                  "count": 2
-                },
-                {
-                  "type": "Twitter",
-                  "count": "1"
-                },
-                {
-                  "type": "hhhhhh",
-                  "count": "1"
-                }
-              ],
-              "mostCommon": "",
-              "total": "4"
-            },
-            {
-              "duration": "0:0:29",
-              "distractions": [
-                {
-                  "type": "Instagram",
-                  "count": 3
-                },
-                {
-                  "type": "Facebook",
-                  "count": "1"
-                }
-              ],
-              "mostCommon": "",
-              "total": "4"
-            },
-            {
-              "duration": "0:0:15",
-              "distractions": [
-                {
-                  "type": "Instagram",
-                  "count": 2
-                },
-                {
-                  "type": "Reddit",
-                  "count": "1"
-                },
-                {
-                  "type": "Facebook",
-                  "count": "1"
-                },
-                {
-                  "type": "Yums",
-                  "count": "1"
-                },
-                {
-                  "type": "Twitter",
-                  "count": "1"
-                }
-              ],
-              "mostCommon": "",
-              "total": "6"
-            }
-          ]
-        },
-        {
-          "name": "Essay",
-          "instances": [
-            {
-              "duration": "0:0:5",
-              "distractions": [
-                {
-                  "type": "Friends",
-                  "count": "8"
-                }
-              ],
-              "mostCommon": "Friends",
-              "total": "8"
-            }
-          ]
-        },
-        {
-          "name": "eat",
-          "instances": [
-            {
-              "duration": "0:0:2",
-              "distractions": [],
-              "mostCommon": "",
-              "total": "0"
-            },
-            {
-              "duration": "0:0:56",
-              "distractions": [
-                {
-                  "type": "Instagram",
-                  "count": 3
-                },
-                {
-                  "type": "Facebook",
-                  "count": 2
-                },
-                {
-                  "type": "Twitter",
-                  "count": 3
-                },
-                {
-                  "type": "Reddit",
-                  "count": 2
-                }
-              ],
-              "mostCommon": "",
-              "total": "10"
             }
           ]
         }

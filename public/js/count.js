@@ -9,6 +9,7 @@ var timeset = true;
 var selected = 0;
 var preset = ["Facebook", "Instagram", "Twitter", "Reddit"];
 var distractions = [];
+var totalMinutes = 0;
 
 $(document).ready(function(e){
 	secs = parseInt($("#secs").text());
@@ -60,11 +61,14 @@ function tick(){
 		} else {
 			secs++;
 		}
-	} else {
+	} 
+	//time is set
+	else {
 
 		if(secs==0){
 			if(mins != 0){
 				mins--;
+				totalMinutes++;
 				secs = 59;
 			} else if(hrs!=0){
 				mins = 59;
@@ -212,10 +216,11 @@ $("#complete").click( function(e){
 	if(!timeset){
 		duration = hrs + ":" + mins + ":" + secs;
 	} else {
-
+		console.log("here");
 		duration = getDur();
+		//console.log(duration);
 	}
- 	console.log(duration);
+ 	//console.log(duration);
 	$.get("/complete/" + duration + "/" + total, redirect);
 });
 
@@ -224,12 +229,34 @@ function redirect(result) {
 }
 
 function getDur(){
-	let hrs_elap = init_hrs - hrs;
-	if(hrs_elap > 0){
-		var mins_elap = 60 + init_mins - mins;
-	} else {
-		var mins_elap = init_mins - mins;
-	} 
+console.log(hrs + " " + mins + " " + secs);
+var sec_elap = null;
+if(secs != 0){
+	sec_elap = 60 - secs;
+}
+else{
+	sec_elap = 0;
+ }
 
-	return hrs_elap+":"+mins_elap+":"+0;
+var mins_elap = null;
+ if(mins != 0 && init_mins != 0){
+	mins_elap = init_mins - mins - 1;
+}
+else if(mins != 0 && init_mins == 0){
+	mins_elap = 60 - mins - 1;
+}
+else{
+	mins_elap = 0;
+ }
+
+
+	var hrs_elap = null
+	if(totalMinutes<60){
+		hrs_elap = 0;
+	}
+	else{
+		hrs_elap = totalMinutes%60;
+	}
+
+	return hrs_elap+":"+mins_elap+":"+ sec_elap;
 }
