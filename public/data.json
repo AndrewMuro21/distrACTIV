@@ -1,24 +1,10 @@
 {
-  "activity_name": "Code",
-  "hours": "00",
-  "mins": "05",
-  "active_user": "Andrew",
-  "date": "2019-04-08T20:02:56.389Z",
+  "activity_name": "",
+  "hours": "",
+  "mins": "",
+  "active_user": "",
+  "date": "",
   "duration": "",
-  "distractions": [
-    {
-      "type": "Reddit",
-      "count": "1"
-    },
-    {
-      "type": "Facebook",
-      "count": "1"
-    },
-    {
-      "type": "Apex Legends",
-      "count": "1"
-    }
-  ],
-  "mostCommon": "",
-  "viewAlt": false
+  "distractions": [],
+  "mostCommon": ""
 }
