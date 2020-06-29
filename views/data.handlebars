@@ -42,6 +42,11 @@ chart.render();
 </head>
 <body>
 	<div class="text-center">
+		<span id="logout" style="font-size: 17px;">
+			<a href="#" data-toggle="modal" data-target="#logoutModal">
+				<i class="help-b fas fa-sign-out-alt" aria-hidden="true"></i>
+			</a>
+		</span>
 		<h4 class="screen-heading center-align p-3 m-0 shadow-md">
 			Data
 		</h4>
@@ -198,6 +203,7 @@ chart.render();
 				  </div>
 				</div>
 
+	{{> logout}}
 
 	<div class="text-center">
 		<!--Activity and Navigation Button-->		

@@ -176,6 +176,13 @@ a:hover {
 	top: 1.35rem;
 }
 
+#logout{
+	position: absolute;
+	left: 1rem;
+	top: 1.35rem;
+}
+
+
 .help-b{
 	color: #efefef;
 }

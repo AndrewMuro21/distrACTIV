@@ -24,7 +24,6 @@ function redirect(result){
 }
 
 
-
 //24 hour time limit
 $("#hours").change(function(){
 	//console.log($(this).val());

@@ -52,6 +52,9 @@ app.get('/start/B', progress.view2);
 
 app.get('/login/:name', login.log);
 app.get('/login/username/password', login.checkUser);
+app.get('/login/username/id', login.checkUser);
+app.get('/login/:name/:id', login.fbCreateUser);
+//app.get('')
 app.get('/signup/:name/:email/:password', login.sig);
 app.get('/home/:name/:hrs/:mins', index.next);
 app.get('/save/:dist', progress.save);

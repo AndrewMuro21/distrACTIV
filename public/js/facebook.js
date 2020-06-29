@@ -1,6 +1,6 @@
 //
 var name = "";
-var email="example@gmail.com";
+var id="";
 
 function checkLoginState() {
   FB.getLoginStatus(function(response) {
@@ -24,30 +24,32 @@ function statusChangeCallback(response) {
 
 function changeUser(response) {
   name = response.first_name;
-  console.log("changeUser " + name);
-  $.get("/login/username/password", redirect);
+  id = response.id;
+  console.log(response);
+  $.get("/login/username/id", fbExistingUser);
 }
 
-function existingUser(result){
+function fbExistingUser(result){
   var exists = null; 
   console.log("existingUser "+ name);
-  
+
+  //fb user exists
   for(var i = 0; i<result['users'].length; i++){
-    if(result['users'][i]['name'] == name){
+    if((result['users'][i]['name'] == name) && (result['users'][i]['id'] == id)){
       exists = true;    
-      $("#userExists").modal('show');
+      $.get("/fblogin/" + name, redirect);
 
     }
-  }   
+  }  
+  
+  //fb user doesn't exist
   if(exists != true){
-
-    console.log("signup "+ name + "  " + email);
-    $.get("/signup/Kush/noneCares@gmail.com", redirect);
-    //console.log("no user found");
-  } else {
-    $.get("/login/" + name, redirect);
+    $.get("/login/" + name + "/" + id, redirect);
+    //window.location.href = "/home";
   }
 }
+
+
 
 function redirect(result){
   window.location.href = "/home";

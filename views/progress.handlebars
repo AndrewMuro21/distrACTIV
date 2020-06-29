@@ -41,6 +41,11 @@ valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
 		</h4>
 	</div>-->
 	<div>
+		<span id="logout" style="font-size: 17px;">
+			<a href="#" data-toggle="modal" data-target="#logoutModal">
+				<i class="help-b fas fa-sign-out-alt" aria-hidden="true"></i>
+			</a>
+		</span>
 		<h4 class="screen-heading p-3 m-0 shadow-md center-align text-center">
 			In Progress		
 		</h4>
@@ -265,6 +270,8 @@ valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
 			    </div>
 			  </div>
 			</div>
+
+			{{> logout}}
 		
 
 	</div>
