@@ -23,21 +23,21 @@ function statusChangeCallback(response) {
 }
 
 function changeUser(response) {
-  name = response.first_name;
+  name = response.name;
   id = response.id;
-  console.log(response);
+  //console.log(response.id);
   $.get("/login/username/id", fbExistingUser);
 }
 
 function fbExistingUser(result){
   var exists = null; 
-  console.log("existingUser "+ name);
+ // console.log("existingUser "+ name);
 
   //fb user exists
   for(var i = 0; i<result['users'].length; i++){
-    if((result['users'][i]['name'] == name) && (result['users'][i]['id'] == id)){
+    if((result['users'][i]['name'] == name) && (result['users'][i]['fbID'] == id)){
       exists = true;    
-      $.get("/fblogin/" + name, redirect);
+      $.get('/fbLogin/' + name + "/" + id, redirect);
 
     }
   }  
@@ -45,7 +45,6 @@ function fbExistingUser(result){
   //fb user doesn't exist
   if(exists != true){
     $.get("/login/" + name + "/" + id, redirect);
-    //window.location.href = "/home";
   }
 }
 

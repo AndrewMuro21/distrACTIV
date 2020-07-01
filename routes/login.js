@@ -18,6 +18,7 @@ exports.view = function(req, res) {
 };	
 	let write = JSON.stringify(template, null, 2);
 	fs.writeFileSync('./public/data.json', write);
+	//fs.writeFile('./public/data.json', write);
 	res.render('login', act);
 }
 
@@ -29,11 +30,26 @@ exports.checkUser = function(req,res){
 // save user in data
 exports.log = function(req, res) {
 	var name = req.params.name;
-	var id = req.params.id;
+	//var id = req.params.fbID;
+	//console.log(req.params);
 	data.active_user = name;
-	data.id = id;
+	data.fbID="";
+	//data.fbID = ;
 	let write = JSON.stringify(data, null, 2);
 	fs.writeFileSync('./public/data.json', write);
+	//fs.writeFile('./public/data.json', write);
+	res.json(data);
+}
+
+//save fb user in data
+exports.fbLog = function(req,res){
+	var name = req.params.name;
+	var id = req.params.id;
+	data.active_user = name;
+	data.fbID = id;
+	let write = JSON.stringify(data, null, 2);
+	fs.writeFileSync('./public/data.json', write);
+	//fs.writeFile('./public/data.json', write);
 	res.json(data);
 }
 
@@ -44,6 +60,7 @@ exports.sig = function(req, res) {
 	data.active_user = name;
 	let write = JSON.stringify(data, null, 2);
 	fs.writeFileSync('./public/data.json', write);
+	//fs.writeFile('./public/data.json', write);
 
 	let template = 
 		{
@@ -70,7 +87,7 @@ exports.fbCreateUser = function(req,res) {
 	var name = req.params.name;
 	var id = req.params.id;
 	data.active_user = name;
-	data.id = id;
+	data.fbID = id;
 	let write = JSON.stringify(data, null, 2);
 	fs.writeFileSync('./public/data.json', write);
 
@@ -85,7 +102,7 @@ exports.fbCreateUser = function(req,res) {
 		};
 
 	template.name = name;
-	template.id = id;
+	template.fbID = id;
 
 	act.users.push(template);
 	let newAct = JSON.stringify(act, null, 2);

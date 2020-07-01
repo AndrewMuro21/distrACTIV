@@ -1,11 +1,17 @@
 {
-  "activity_name": "",
-  "hours": "",
-  "mins": "",
-  "active_user": "Andrew",
-  "fbID": "2872283729566405",
-  "date": "",
+  "activity_name": "Code",
+  "hours": "05",
+  "mins": "00",
+  "active_user": "Tester",
+  "fbID": "",
+  "date": "2020-07-01T01:59:34.855Z",
   "duration": "",
-  "distractions": [],
-  "mostCommon": ""
+  "distractions": [
+    {
+      "type": "Facebook",
+      "count": "1"
+    }
+  ],
+  "mostCommon": "",
+  "viewAlt": false
 }

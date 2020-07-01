@@ -260,3 +260,7 @@ else{
 
 	return hrs_elap+":"+mins_elap+":"+ sec_elap;
 }
+
+$("#logoutButton").click(function(e){
+	$.get("/login/logout");
+});

@@ -7,7 +7,6 @@ $("#Type .dropdown .dropdown-menu li").click(function(e) {
 });
 
 
-
 //set bar graph output
 $("#Graph #Bar").click(function(e) {
 	$("#Graph #Line").attr('class', "btnOff")
@@ -279,3 +278,7 @@ var chart = new CanvasJS.Chart("dataGraph", {
 chart.render();
 
 }
+
+$("#logoutButton").click(function(e){
+	$.get("/login/logout");
+});

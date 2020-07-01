@@ -1,97 +1,74 @@
 {
   "users": [
     {
-      "name": "Andrew",
-      "pass": "WizRap",
-      "mail": "muro_andrew@yahoo.com",
-      "id": "",
+      "name": "Tester",
+      "pass": "1234",
+      "mail": "projTester@gmail.com",
+      "fbID": "",
       "activities": [
         {
-          "name": "Code",
+          "name": "Math hw",
           "instances": [
             {
-              "duration": "0:0:7",
+              "duration": "0:0:20",
               "distractions": [
                 {
-                  "type": "Reddit",
-                  "count": "1"
+                  "type": "Instagram",
+                  "count": 3
                 },
                 {
                   "type": "Facebook",
                   "count": "1"
                 },
                 {
-                  "type": "Apex Legends",
+                  "type": "Reddit",
+                  "count": "1"
+                },
+                {
+                  "type": "youtube",
                   "count": "1"
                 }
               ],
               "mostCommon": "",
-              "total": "3"
+              "total": "6"
+            },
+            {
+              "duration": "0:0:5",
+              "distractions": [
+                {
+                  "type": "Twitter",
+                  "count": "1"
+                }
+              ],
+              "mostCommon": "",
+              "total": "1"
+            },
+            {
+              "duration": "0:0:58",
+              "distractions": [
+                {
+                  "type": "Reddit",
+                  "count": 6
+                }
+              ],
+              "mostCommon": "",
+              "total": "6"
             }
           ]
         },
         {
-          "name": "h",
+          "name": "Code",
           "instances": [
             {
-              "duration": "0:0:4",
-              "distractions": [],
-              "mostCommon": "",
-              "total": "0"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Tester",
-      "pass": "projectDisplay",
-      "mail": "tester@gmail.com",
-      "activities": [
-        {
-          "name": "CSE Project",
-          "instances": [
-            {
-              "duration": "0:0:22",
+              "duration": "0:0:3",
               "distractions": [
                 {
                   "type": "Facebook",
-                  "count": 2
-                },
-                {
-                  "type": "Reddit",
-                  "count": "1"
-                },
-                {
-                  "type": "Instagram",
-                  "count": "1"
-                },
-                {
-                  "type": "Tik Tok",
                   "count": "1"
                 }
               ],
               "mostCommon": "",
-              "total": "5"
-            },
-            {
-              "duration": "0:0:7",
-              "distractions": [
-                {
-                  "type": "Netflix",
-                  "count": "1"
-                },
-                {
-                  "type": "Twitter",
-                  "count": "1"
-                },
-                {
-                  "type": "Instagram",
-                  "count": "1"
-                }
-              ],
-              "mostCommon": "",
-              "total": "3"
+              "total": "1"
             }
           ]
         }

@@ -54,11 +54,12 @@ exports.complete = function(req, res){
 	let total = req.params.total;
 	let dur = req.params.dur;
 	let name = data.active_user;
+	let curfbID = data.fbID;
 	let template = {"name": data.activity_name, "instances": [{"duration" : dur, "distractions": data.distractions, "mostCommon": "", "total": total}]};
 	let flag = false;
 
 	for(let val of acts.users){
-		if(val.name == name) {
+		if(val.name == name && val.fbID == curfbID) {
 			if(val.activities.length == 0){
 				val.activities.push(template);
 				break;

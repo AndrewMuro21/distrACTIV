@@ -83,7 +83,7 @@ function existingUser(result){
 	var exists = null; 
 	
 	for(var i = 0; i<result['users'].length; i++){
-		if(result['users'][i]['name'] == name){
+		if(result['users'][i]['name'] == name  && result['users'][i]['fbID'] == ""){
 			exists = true;		
 			$("#userExists").modal('show');
 
@@ -92,6 +92,7 @@ function existingUser(result){
 	if(exists != true){
 		$.get("/signup/" + name + "/" + email + "/" + pass, redirect);
 		//console.log("no user found");
+		//****** update data.json */
 	}	
 }
 

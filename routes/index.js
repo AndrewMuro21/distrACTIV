@@ -7,9 +7,10 @@ var acts = require("../public/activities.json");
 
 exports.view = function(req, res){
 	var name = data.active_user;
+	var curfbID = data.fbID;
 	console.log(`name is ${name}`);
 	for(let val of acts.users){
-		if(val.name == name){
+		if(val.name == name && val.fbID == curfbID){
 			var actData = val;
 		}
 	} 

@@ -50,5 +50,8 @@ $("#hours").change(function(){
 		}
 });
 
+$("#logoutButton").click(function(e){
+	$.get("/login/logout");
+});
 
 
