@@ -1,14 +1,14 @@
 {
-  "activity_name": "Code",
-  "hours": "05",
+  "activity_name": "hh",
+  "hours": "01",
   "mins": "00",
   "active_user": "Tester",
   "fbID": "",
-  "date": "2020-07-01T01:59:34.855Z",
+  "date": "2020-07-02T23:44:54.899Z",
   "duration": "",
   "distractions": [
     {
-      "type": "Facebook",
+      "type": "Twitter",
       "count": "1"
     }
   ],

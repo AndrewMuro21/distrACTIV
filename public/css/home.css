@@ -9,6 +9,15 @@ body {
 	background-color: #f7f7f7;
 }
 
+
+#blackText:hover{
+	color: black
+}
+
+#actTypeDropDown:hover{
+	background-color: #D3D3D3
+}
+
 .grad {
   background-image: linear-gradient(to bottom right, #66d9ff, white);
 }
@@ -86,27 +95,6 @@ a:hover {
 }
 
 
-
-.bar{
-
-}
-
-
-.line{
-
-}
-
-.previous{
-
-}
-
-.last5{
-
-}
-
-.last10{
-	
-}
 
 .screen-heading {
 	background-color: var(--prim-color);
