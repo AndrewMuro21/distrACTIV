@@ -7,4 +7,4 @@ Everyone has daily tasks and activities that they have or want to complete. Howe
 SOLUTION: 
 We have created distrACTIV, a distraction logger and feedback app. By logging the specifics of the distraction that each user commits, they can become more aware about where the main causes of their distractions stem from. As a result, they can form better working habits by being more mindful of the obstacles that impede them from having productive work sessions. Through a user’s accountability in properly using distrACTIV, our app promotes users to lower their distraction levels over time and be more aware of what caused those distractions in the first place.
 
-
+Note: To see a user with preset data, please login with (username: Tester ; password: exPassword). Data created through the Heroku deployment of the app will go away once the app is exited. Data saves on local downloads and running with Node commands.
