@@ -1,9 +1,8 @@
 //Change activity type dropdown text to match selected text
 $("#Type .dropdown .dropdown-menu li").click(function(e) {
 	$("#Type .dropdown #actButton").text($(this).text());
-
-	//call for user data
-	$.get("/data/charts", addChart);
+	//call for user data and activities and distractions for this specific dropdown
+	$.get("/data/charts/" + $(this).text(), addChart);
 });
 
 
@@ -98,184 +97,190 @@ $("#dataGraph").click(function(e){
 
 //later create graph function
 function addChart(result){
-//get title
-var Title = $("#Type .dropdown #actButton").text();
+	console.log(result);
 
-//get number timeframe
-var num = 0;
-if($("#dataGraph").hasClass("previous") == true){
-	num = 1;
-}
-if($("#dataGraph").hasClass("last5") == true){
-	num = 5;
-}
-if($("#dataGraph").hasClass("last10") == true){
-	num = 10;
-}
+	//get title
+	var Title = $("#Type .dropdown #actButton").text();
 
-//get bar or line
-var graphType = null;
-if($("#dataGraph").hasClass("bar") == true){
-	graphType = "column";
-}
-if($("#dataGraph").hasClass("line") == true){
-	graphType = "line";
-}
-
-//get proper index following activities
-var actIndex = null;
-for(var i = 0; i<result['activities'].length; i++){
-	//console.log(Title);
-	//console.log(result['activities'][0]['name']);
-	if(Title == result['activities'][i]['name']){
-		actIndex = i;
-		break;
+	//get number timeframe
+	var num = 0;
+	if($("#dataGraph").hasClass("previous") == true){
+		num = 1;
 	}
-}
-
-//do nothing if activity doesnt'exist
-if(actIndex == null){
-	return;
-}
-
-//array to fill chart with points
-var dataPoints = [];
-
-
-//get start index of data
-var index = null;
-if(result['activities'][actIndex]['instances'].length>num){
-	index = result['activities'][actIndex]['instances'].length - num;
-}
-else if(result['activities'][actIndex]['instances'].length<=num){
-	index = 0;
-}
+	if($("#dataGraph").hasClass("last5") == true){
+		num = 5;
+	}
+	if($("#dataGraph").hasClass("last10") == true){
+		num = 10;
+	}
 	
-//template for html modal words
-var chartModalTemp = "";
 
-var startGreater = 0;
-var startTrue = 0;
+	//get bar or line
+	var graphType = null;
+	if($("#dataGraph").hasClass("bar") == true){
+		graphType = "column";
+	}
+	if($("#dataGraph").hasClass("line") == true){
+		graphType = "line";
+	}
 
-//get proper counts, fill dataPoints
-for (var i = index, j = 1; i < num + index; i++, j++) {
-	//input filler values for x-axis 
-	if(i>=result['activities'][actIndex]['instances'].length){
-		if(startTrue == 0){
-			startGreater = j;
-			startTrue = 1;
-		}
+	var dataPoints = [];
+	dataPoints.push({label:1, y:2});
 
-		dataPoints.push({
-			label: j			
-		});
-
-		if(i == (num-1)){
-			if(startGreater!=num){
-				chartModalTemp += '<p>' + startGreater +'-' + num +'. '+ 'No data for these activities.' +'</p>';
-			}
-			else{
-				chartModalTemp += '<p>' + startGreater + '. '+ 'No data for activity.' + '</p>';
-			} 
+	/*get proper index following activities
+	var actIndex = null;
+	for(var i = 0; i<result['activities'].length; i++){
+		//console.log(Title);
+		//console.log(result['activities'][0]['name']);
+		if(Title == result['activities'][i]['name']){
+			actIndex = i;
+			break;
 		}
 	}
 
-	else{
-		//instance for when there are no distractions
-		if(result['activities'][actIndex]['instances'][i]['distractions'].length == 0){
-			dataPoints.push({
-				label: j,
-				y: 0
-			});
-			chartModalTemp += '<p>' + j + '. '+ '0 distractions. Great Job!' + 
-			'<br>' + '&nbsp&nbsp&nbsp&nbspDuration: ' + result['activities'][actIndex]['instances'][j-1]['duration']
-			+ '<br>' + '&nbsp&nbsp&nbsp&nbspMost Common: None' + '</p>';
-		}
-		//distractions exist
-		else{
-			dataPoints.push({
-				label: j,
-				y: parseInt(result['activities'][actIndex]['instances'][i]['total'])
-			});
+	//do nothing if activity doesnt'exist
+	if(actIndex == null){
+		return;
+	}
 
-			//make another template to add to chart Modal temp that loops through result
-			var helpTemp = "";
+	//array to fill chart with points
+	var dataPoints = [];
 
-			var mostCommon = [];
-			var max = 0;
-			
-			//get specific distractions and their counts, most Common as well
-			for (var k = 0; k < result['activities'][actIndex]['instances'][i]['distractions'].length; k++){
-				helpTemp += '<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspInstance: ' + 
-				result['activities'][actIndex]['instances'][i]['distractions'][k]['type'] + ', count: '
-				+ result['activities'][actIndex]['instances'][i]['distractions'][k]['count'];
 
-				//most common check
-				var maxCheck = parseInt(result['activities'][actIndex]['instances'][i]['distractions'][k]['count']);
-				if( maxCheck > max){
-					//reset mostCommon and push new distraction type
-					mostCommon = [];
-					mostCommon.push(result['activities'][actIndex]['instances'][i]['distractions'][k]['type']);
-					max = maxCheck;
-				}
-				else if(maxCheck == max){
-					mostCommon.push(result['activities'][actIndex]['instances'][i]['distractions'][k]['type']);
-				}
+	//get start index of data
+	var index = null;
+	if(result['activities'][actIndex]['instances'].length>num){
+		index = result['activities'][actIndex]['instances'].length - num;
+	}
+	else if(result['activities'][actIndex]['instances'].length<=num){
+		index = 0;
+	}
+		
+	//template for html modal words
+	var chartModalTemp = "";
+
+	var startGreater = 0;
+	var startTrue = 0;
+
+	//get proper counts, fill dataPoints
+	for (var i = index, j = 1; i < num + index; i++, j++) {
+		//input filler values for x-axis 
+		if(i>=result['activities'][actIndex]['instances'].length){
+			if(startTrue == 0){
+				startGreater = j;
+				startTrue = 1;
 			}
 
-			//template for most Common 
-			var mostCommonText = "";
-			//fill mostCommonText
-			for(var s = 0; s < mostCommon.length; s++){
-				if(s == (mostCommon.length - 1)){
-						mostCommonText += mostCommon[s]; 
+			dataPoints.push({
+				label: j			
+			});
+
+			if(i == (num-1)){
+				if(startGreater!=num){
+					chartModalTemp += '<p>' + startGreater +'-' + num +'. '+ 'No data for these activities.' +'</p>';
 				}
 				else{
-						mostCommonText += mostCommon[s] + ", ";
-				}
+					chartModalTemp += '<p>' + startGreater + '. '+ 'No data for activity.' + '</p>';
+				} 
 			}
+		}
 
-			//main template
-			chartModalTemp += '<p>' + j + '. Total distractions: ' + result['activities'][actIndex]['instances'][i]['total'] 
-			 + helpTemp + '<br>' + '&nbsp&nbsp&nbsp&nbspDuration: ' + result['activities'][actIndex]['instances'][i]['duration'] + 
-			 '<br>' + '&nbsp&nbsp&nbsp&nbspMost Common: ' + mostCommonText + '</p>';
+		else{
+			//instance for when there are no distractions
+			if(result['activities'][actIndex]['instances'][i]['distractions'].length == 0){
+				dataPoints.push({
+					label: j,
+					y: 0
+				});
+				chartModalTemp += '<p>' + j + '. '+ '0 distractions. Great Job!' + 
+				'<br>' + '&nbsp&nbsp&nbsp&nbspDuration: ' + result['activities'][actIndex]['instances'][j-1]['duration']
+				+ '<br>' + '&nbsp&nbsp&nbsp&nbspMost Common: None' + '</p>';
+			}
+			//distractions exist
+			else{
+				dataPoints.push({
+					label: j,
+					y: parseInt(result['activities'][actIndex]['instances'][i]['total'])
+				});
+
+				//make another template to add to chart Modal temp that loops through result
+				var helpTemp = "";
+
+				var mostCommon = [];
+				var max = 0;
+				
+				//get specific distractions and their counts, most Common as well
+				for (var k = 0; k < result['activities'][actIndex]['instances'][i]['distractions'].length; k++){
+					helpTemp += '<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspInstance: ' + 
+					result['activities'][actIndex]['instances'][i]['distractions'][k]['type'] + ', count: '
+					+ result['activities'][actIndex]['instances'][i]['distractions'][k]['count'];
+
+					//most common check
+					var maxCheck = parseInt(result['activities'][actIndex]['instances'][i]['distractions'][k]['count']);
+					if( maxCheck > max){
+						//reset mostCommon and push new distraction type
+						mostCommon = [];
+						mostCommon.push(result['activities'][actIndex]['instances'][i]['distractions'][k]['type']);
+						max = maxCheck;
+					}
+					else if(maxCheck == max){
+						mostCommon.push(result['activities'][actIndex]['instances'][i]['distractions'][k]['type']);
+					}
+				}
+
+				//template for most Common 
+				var mostCommonText = "";
+				//fill mostCommonText
+				for(var s = 0; s < mostCommon.length; s++){
+					if(s == (mostCommon.length - 1)){
+							mostCommonText += mostCommon[s]; 
+					}
+					else{
+							mostCommonText += mostCommon[s] + ", ";
+					}
+				}
+
+				//main template
+				chartModalTemp += '<p>' + j + '. Total distractions: ' + result['activities'][actIndex]['instances'][i]['total'] 
+				+ helpTemp + '<br>' + '&nbsp&nbsp&nbsp&nbspDuration: ' + result['activities'][actIndex]['instances'][i]['duration'] + 
+				'<br>' + '&nbsp&nbsp&nbsp&nbspMost Common: ' + mostCommonText + '</p>';
+			}
 		}
 	}
-}
-//change title of correct modal
-var modalTitle = Title;
+	//change title of correct modal
+	var modalTitle = Title;
 
-//set html of the modal
-if($("#dataGraph").hasClass("previous") == true){
-	$("#pdTitle").html(modalTitle);
-	$("#prevText").html(chartModalTemp);
-}
-if($("#dataGraph").hasClass("last5") == true){
-	$("#l5Title").html(modalTitle);
-	$("#last5Text").html(chartModalTemp);	
-}
-if($("#dataGraph").hasClass("last10") == true){
-	$("#l10Title").html(modalTitle);
-	$("#last10Text").html(chartModalTemp);
-}
+	//set html of the modal
+	if($("#dataGraph").hasClass("previous") == true){
+		$("#pdTitle").html(modalTitle);
+		$("#prevText").html(chartModalTemp);
+	}
+	if($("#dataGraph").hasClass("last5") == true){
+		$("#l5Title").html(modalTitle);
+		$("#last5Text").html(chartModalTemp);	
+	}
+	if($("#dataGraph").hasClass("last10") == true){
+		$("#l10Title").html(modalTitle);
+		$("#last10Text").html(chartModalTemp);
+	}*/
 
-var chart = new CanvasJS.Chart("dataGraph", {
-	animationEnabled: true,
-	theme: "light1",
-	title: {
-		text: Title
-	},
-	axisY: {
-		title: "Distraction Count",
-		titleFontSize: 20
-	},
-	data: [{
-		type: graphType,
-		yValueFormatString: "#,### Units",
-		dataPoints: dataPoints
-	}]
-});
-chart.render();
+	var chart = new CanvasJS.Chart("dataGraph", {
+		animationEnabled: true,
+		theme: "light1",
+		title: {
+			text: Title
+		},
+		axisY: {
+			title: "Distraction Count",
+			titleFontSize: 20
+		},
+		data: [{
+			type: graphType,
+			yValueFormatString: "#,### Units",
+			dataPoints: dataPoints
+		}]
+	});
+	chart.render();
 
 }
 

@@ -44,17 +44,24 @@ app.get('/home', index.view);
 app.get('/start', progress.view);
 app.get('/data', data.view);
 //call for charts
-app.get('/data/charts', data.updateChart);
+app.get('/data/charts/:activity', data.updateChart);
 
 app.get('/start/B', progress.view2);
 //alternate for user testing
 //app.get('/data/viewAlt', data.viewAlt);
 
-app.get('/login/:name', login.log);
-app.get('/fbLogin/:name/:id', login.fbLog);
-app.get('/login/username/password', login.checkUser);
-app.get('/login/username/id', login.checkUser);
-app.get('/login/:name/:id', login.fbCreateUser);
+app.get('/login/:name/:id', login.log);
+app.get('/checkUser/:name/:password', login.normalLogCheck);
+//app.get('/fbLogin/:name/:id', login.fbLog);
+app.get('/login/:name', login.checkUser);
+app.get('/fblogin/:username/:id', login.fbCheckUser);
+
+app.get('/newFb/:name/:id', login.fbCreateUser);
+app.get('/existingFb/:name/:fbId/:userId', login.fbLog);
+
+
+
+//app.get('/login/:name/:id', login.fbCreateUser);
 app.get('/login/logout', login.view);
 app.get('/signup/:name/:email/:password', login.sig);
 app.get('/home/:name/:hrs/:mins', index.next);

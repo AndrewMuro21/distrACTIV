@@ -7,6 +7,21 @@ var fs = require("fs");
 var acts = require("../public/activities.json");
 
 
+var mysql = require('mysql');
+
+var con = mysql.createConnection({
+	host: "localhost",
+	user: "root",
+	password: "Amsql21",
+	database: "distractiv"
+});
+
+con.connect(function(err) {
+	if (err) throw err;
+	console.log("connected");
+});
+
+
 exports.view = function(req, res){
 	data["viewAlt"] = false;
 	res.render('progress', data);
@@ -50,38 +65,34 @@ exports.save = function (req, res){
 	res.json(data);
 }
 
+//insert into database
 exports.complete = function(req, res){
 	let total = req.params.total;
 	let dur = req.params.dur;
-	let name = data.active_user;
-	let curfbID = data.fbID;
-	let template = {"name": data.activity_name, "instances": [{"duration" : dur, "distractions": data.distractions, "mostCommon": "", "total": total}]};
-	let flag = false;
 
-	for(let val of acts.users){
-		if(val.name == name && val.fbID == curfbID) {
-			if(val.activities.length == 0){
-				val.activities.push(template);
-				break;
-			} else {
-				for(let activity of val.activities) {
-					if(activity.name == data.activity_name){
-						activity.instances.push({"duration": dur, "distractions": data.distractions, "mostCommon": "", "total": total});
-						flag = true;
-						break;
-					}				
-				}
-				if(!flag){
-					val.activities.push(template);
-				}
+	//first insert the specific activity instance data
+	var sql = "INSERT INTO activity_data (act_id, duration, total) VALUES (" + data.activity_id + ",'" +dur + "','" + total + "')";
+	con.query(sql, function (err) {
+		if (err) throw err;
+		console.log("new activity instance");
+		//get the id for the inserted activity
+		var sqlId = "SELECT act_data_id FROM activity_data WHERE act_id = " + data.activity_id + " ORDER BY act_data_id DESC LIMIT 1";
+		con.query(sqlId, function (err, result) {
+			if (err) throw err;
+			//console.log(result);
+			var curActInstanceId = result[0].act_data_id;
+			//console.log(curActInstanceId)
+
+			
+		//then insert each distraction
+			for (i=0; i<data.distractions.length; i++) {
+				var sqlDistraction = "INSERT INTO distractions (act_data_id, type, count) VALUES (" + curActInstanceId + ",'" + data.distractions[i].type + "','" + data.distractions[i].count +"')";	
+				con.query(sqlDistraction, function(err){
+					if (err) throw err;
+				});
 			}
-			break;
-		}
-	}
-
-	let write = JSON.stringify(acts, null, 2);
-	fs.writeFileSync('./public/activities.json', write);
-	res.json(acts);
-
+		});	
+	});
+	res.json(data);
 }
 

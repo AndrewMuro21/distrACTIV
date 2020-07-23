@@ -34,28 +34,22 @@ $("#log").click(function(e){
 		$("#log").attr('data-target', "#logAndSignReq");
 	}
 	else if(name!="" && pass!=""){
-		$.get("/login/username/password", userCheck); 
+		$.get("/checkUser/" +name+ "/"+ pass, userCheck);
 	}
 });
 
 function userCheck(result){
 	var name = $("#log-name").val();
-	var pass = $("#log-pass").val();
-	var exists = null; 
-	
-	for(var i = 0; i<result['users'].length; i++){
-		if(result['users'][i]['name'] == name && result['users'][i]['pass'] == pass){
-			exists = true;
-			$.get("/login/" + name, redirect);
-		}
-	}		
-	if(exists != true){
+	//user found
+	//console.log(result);
+	if (result.length > 0){
+		$.get("/login/" + name +"/" + result[0].user_id, redirect);
+	}
+	//user not found	
+	else{
 		$("#notFound").modal('show');
-		//console.log("no user found");
 	}
 }
-
-
 
 //on create account/sign up page, click sign up to sign up, goes to start activity
 $("#sig").click(function(e){
@@ -71,29 +65,25 @@ $("#sig").click(function(e){
 		$("#sig").attr('data-target', "#logAndSignReq");
 	}
 	else{
-		$.get("/login/username/password", existingUser); 
+		$.get("/login/" + name, existingUser); 
 
 	}
 });
 
+
 function existingUser(result){
+	//console.log(result);
 	var name = $("#sig-name").val();
 	var email = $("#inputEmail").val();
 	var pass= $("#passWord").val();
 	var exists = null; 
-	
-	for(var i = 0; i<result['users'].length; i++){
-		if(result['users'][i]['name'] == name  && result['users'][i]['fbID'] == ""){
-			exists = true;		
-			$("#userExists").modal('show');
 
-		}
-	}		
-	if(exists != true){
+	if (result.length > 0){
+		$("#userExists").modal('show');
+	}
+	else{
 		$.get("/signup/" + name + "/" + email + "/" + pass, redirect);
-		//console.log("no user found");
-		//****** update data.json */
-	}	
+	}
 }
 
 function redirect(result){

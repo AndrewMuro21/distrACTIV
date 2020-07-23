@@ -1,11 +1,22 @@
 {
-  "activity_name": "",
-  "hours": "",
-  "mins": "",
-  "active_user": "",
-  "fbID": "",
-  "date": "",
+  "activity_name": "final",
+  "hours": "00",
+  "mins": "00",
+  "active_user": "Flash",
+  "user_id": "4",
+  "activity_id": 5,
+  "date": "2020-07-22T02:27:21.192Z",
   "duration": "",
-  "distractions": [],
-  "mostCommon": ""
+  "distractions": [
+    {
+      "type": "Instagram",
+      "count": "1"
+    },
+    {
+      "type": "Twitter",
+      "count": "1"
+    }
+  ],
+  "mostCommon": "",
+  "viewAlt": false
 }

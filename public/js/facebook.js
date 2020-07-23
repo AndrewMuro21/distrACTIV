@@ -26,10 +26,10 @@ function changeUser(response) {
   name = response.name;
   id = response.id;
   //console.log(response.id);
-  $.get("/login/username/id", fbExistingUser);
+  $.get("/fblogin/" + name + "/" + id, fbExistingUser);
 }
 
-function fbExistingUser(result){
+/*function fbExistingUser(result){
   var exists = null; 
  // console.log("existingUser "+ name);
 
@@ -46,6 +46,21 @@ function fbExistingUser(result){
   if(exists != true){
     $.get("/login/" + name + "/" + id, redirect);
   }
+}*/
+
+function fbExistingUser(result){
+  //fb user exists
+  if (result.length > 0){
+    console.log("fb user exists");
+    $.get("/existingFb/" + name + "/" + id + "/" + result[0].user_id, redirect);
+  }
+  //fb user doesnt exist
+  else{
+    console.log("new facebook user");
+    $.get("/newFb/" + name + "/" + id, redirect);
+  }
+  
+
 }
 
 
