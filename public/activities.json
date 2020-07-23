@@ -1,1 +1,93 @@
-{}
+{
+  "users": [
+    {
+      "name": "Tester",
+      "pass": "exPassword",
+      "mail": "projTester@gmail.com",
+      "fbID": "",
+      "activities": [
+        {
+          "name": "Math hw",
+          "instances": [
+            {
+              "duration": "0:0:20",
+              "distractions": [
+                {
+                  "type": "Instagram",
+                  "count": 3
+                },
+                {
+                  "type": "Facebook",
+                  "count": "1"
+                },
+                {
+                  "type": "Reddit",
+                  "count": "1"
+                },
+                {
+                  "type": "youtube",
+                  "count": "1"
+                }
+              ],
+              "mostCommon": "",
+              "total": "6"
+            },
+            {
+              "duration": "0:0:5",
+              "distractions": [
+                {
+                  "type": "Twitter",
+                  "count": "1"
+                }
+              ],
+              "mostCommon": "",
+              "total": "1"
+            },
+            {
+              "duration": "0:0:58",
+              "distractions": [
+                {
+                  "type": "Reddit",
+                  "count": 6
+                }
+              ],
+              "mostCommon": "",
+              "total": "6"
+            },
+            {
+              "duration": "0:0:12",
+              "distractions": [
+                {
+                  "type": "Tiktok",
+                  "count": "1"
+                },
+                {
+                  "type": "Twitter",
+                  "count": 6
+                }
+              ],
+              "mostCommon": "",
+              "total": "7"
+            }
+          ]
+        },
+        {
+          "name": "Code",
+          "instances": [
+            {
+              "duration": "0:0:3",
+              "distractions": [
+                {
+                  "type": "Facebook",
+                  "count": "1"
+                }
+              ],
+              "mostCommon": "",
+              "total": "1"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
